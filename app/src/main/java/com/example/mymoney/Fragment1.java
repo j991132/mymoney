@@ -7,8 +7,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 //import androidx.core.app.Fragment;
@@ -29,6 +32,7 @@ public class Fragment1 extends Fragment {
     TextView nowdate;
     View view;
     ImageButton selectdate;
+    String[] items = {"오늘", "이번 주", "이번 달", "올해"};
 
     private String getDate() {
         mNow = System.currentTimeMillis();
@@ -63,6 +67,24 @@ public class Fragment1 extends Fragment {
                 if(selectdate.isClickable()){
                     datePickerDialog.show();
                 }
+            }
+        });
+
+//        스피너
+        Spinner spinner = view.findViewById(R.id.period_spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, items);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //셀렉트시 행동 items[position]
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
 
