@@ -31,7 +31,7 @@ public class Fragment1 extends Fragment {
     SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd");
     TextView nowdate;
     View view;
-    ImageButton selectdate;
+    ImageButton selectdate, income_btn, spend_btn;
     String[] items = {"오늘", "이번 주", "이번 달", "올해"};
 
     private String getDate() {
@@ -48,18 +48,21 @@ public class Fragment1 extends Fragment {
         nowdate = (TextView) view.findViewById(R.id.nowdate);
         nowdate.setText(getDate());
         selectdate =(ImageButton)view.findViewById(R.id.selectdate_btn);
+        income_btn = (ImageButton)view.findViewById(R.id.income_btn);
+        spend_btn = (ImageButton)view.findViewById(R.id.spend_btn);
 
         Calendar c=Calendar.getInstance();
         int mYear = c.get(Calendar.YEAR);
         int mMonth = c.get(Calendar.MONTH);
         int mDay = c.get(Calendar.DAY_OF_MONTH);
-
+//달력 다이얼로그
         DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
            nowdate.setText(year+"/"+(month+1)+"/"+dayOfMonth);
             }
         },mYear,mMonth,mDay);
+//버튼
 
         selectdate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +72,7 @@ public class Fragment1 extends Fragment {
                 }
             }
         });
+
 
 //        스피너
         Spinner spinner = view.findViewById(R.id.period_spinner);
