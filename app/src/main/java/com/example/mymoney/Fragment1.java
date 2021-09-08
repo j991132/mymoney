@@ -17,7 +17,10 @@ import android.widget.TextView;
 //import androidx.core.app.Fragment;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -91,6 +94,30 @@ public class Fragment1 extends Fragment {
 
             }
         });
+//리사이클뷰
+        Adapter listadapter;
+        RecyclerView recyclerView;
+
+
+        //데이터 모델리스트
+        ArrayList<DataModel> dataModels = new ArrayList();
+
+        dataModels.add(new DataModel("간식먹었다",50));
+        dataModels.add(new DataModel("새벽공방 : 다섯밤",100));
+        dataModels.add(new DataModel("폴킴 : 우리 만남이",150));
+        dataModels.add(new DataModel("안녕하신가영 : 니가 좋아",200));
+        dataModels.add(new DataModel("넬 : 멀어지다",250));
+        dataModels.add(new DataModel("꽃잠프로젝트 : 그대는 어디 있나요",300));
+        dataModels.add(new DataModel("검정치마 : 기다린 만큼 ,더",350));
+        dataModels.add(new DataModel("어쿠루브 : 그게 뭐라고",400));
+        dataModels.add(new DataModel("우효 : Grace",450));
+        dataModels.add(new DataModel("브로콜리너마저 : 보편적인 노래",500));
+
+
+        recyclerView = view.findViewById(R.id.recyceler_view);
+        listadapter = new Adapter(getContext(),dataModels);
+        recyclerView.setAdapter(listadapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false));
 
         // Inflate the layout for this fragment
         return view;
