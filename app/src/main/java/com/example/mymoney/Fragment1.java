@@ -1,12 +1,14 @@
 package com.example.mymoney;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.icu.text.SimpleDateFormat;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
@@ -36,6 +38,7 @@ public class Fragment1 extends Fragment {
     View view;
     ImageButton selectdate, income_btn, spend_btn;
     String[] items = {"오늘", "이번 주", "이번 달", "올해"};
+    Dialog incomedialog, spenddialog;
 
     private String getDate() {
         mNow = System.currentTimeMillis();
@@ -73,6 +76,16 @@ public class Fragment1 extends Fragment {
                 if(selectdate.isClickable()){
                     datePickerDialog.show();
                 }
+            }
+        });
+        income_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                incomedialog = new Dialog(getContext());  //다이얼로그 초기화
+                incomedialog.requestWindowFeature(Window.FEATURE_NO_TITLE);  //타이틀 제거
+                incomedialog.setContentView(R.layout.incomedialog);  //xml 연결
+                incomedialog.show();  //다이얼로그 띄우기
+                //다이얼로그 안의 버튼 액션 넣기
             }
         });
 
